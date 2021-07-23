@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col s8 offset-s2">
+      <div class="card">
+        {% if post.image %}
+        <div class="card-image">
+          <img src="/media/{{post.image}}" style="width: 40%">
+        </div>
+        {% endif %}
+        <div class="card-content">
+          {% if post.user == request.user %}
+          <span class="card-title"><b>You</b></span>          
+          {% else %}
+          <span class="card-title"><b>{{post.user.first_name}} {{post.user.last_name}}</b></span>
+          {% endif %}
+          <p>{{post.createdAt}}</p>
+          <br>
+          <p>{{post.content}}</p>
+        </div>
+        <div class="card-action">
+          <a href="#" onclick="likePost({{post.id}})"><i class="tiny material-icons">favorite</i> {{ post.like_set.count }}</a>
+          <a class="modal-trigger" href="#modalPost{{post.id}}"><i class="tiny material-icons">comment</i> {{ post.comment_set.count }}</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div id="modalPost{{post.id}}" class="modal">
+    <div class="modal-content">
+      <h4>Comments</h4>
+      <br>
+      <form onsubmit="commentPost({{post.id}}, document.getElementById('Comment{{post.id}}').value)">
+        <div class="input-field">
+          <input type="text" id="Comment{{post.id}}" placeholder="Comment..." class="validate">
+          <label for="Comment{{post.id}}">Comment</label>
+          <button type="submit" class="btn waves-effect"><i class="tiny material-icons">send</i></button>
+        </div>
+      </form>
+      {% for comment in post.comment_set.all %}
+      <p><b>{{comment.user.first_name}}:</b> {{comment.content}}</p>
+      {% endfor %}
+    </div>
+    
+</div>

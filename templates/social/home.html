@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+	<h3 align="center">Home</h3>
+
+	<form method="POST" action="/post/" enctype="multipart/form-data" >    <!-- This enctype for serving images-->
+		{% csrf_token %}
+		{{post_form}}
+		<button class="btn waves-effect" type="submit">Post</button>
+	</form>
+	
+	<ul>
+	{% for post in posts %}
+		<!-- {{post}} - {{ post.like_set.count }} likes - {{ post.comment_set.count }} comments -->
+		{% include 'social/components/post.html' %}
+	{% endfor %}
+	</ul>
+
+</div>
+
+{% endblock %}
