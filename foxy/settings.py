@@ -28,7 +28,7 @@ SECRET_KEY = '1@iuv^5zt_g*#b@aetjk&=&tvghgjfr3r!35mjw8$#4#(zj#@4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["socialwebsite121.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = ["socialwebsite123.herokuapp.com", "localhost"]
 
 # Application definition
 
